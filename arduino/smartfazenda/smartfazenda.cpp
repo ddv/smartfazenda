@@ -399,6 +399,8 @@ void runcmd(String cmd, String val) {
 		Serial.println(F("valve2_off"));
 	}
 
+	Serial.print(F("out:"));
+
 	Serial.print(F("valve1_on="));
 		Serial.println(valve1_on);
 
