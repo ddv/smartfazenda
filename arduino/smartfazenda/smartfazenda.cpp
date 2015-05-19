@@ -108,7 +108,9 @@ boolean valve2_on = false;
 boolean valve3_on = false;
 boolean valve4_on = false;
 
-boolean pump_on = false;
+boolean pump1_on = false;
+unsigned long pump1_start_time = 0;
+
 uint16_t input_water_flow = 0;
 
 void setup(void)
@@ -226,7 +228,7 @@ void loop(void)
 				}
 			}
 
-      //��������� ������
+      //��������� ������
       char *tmp;
       tmp = strtok(path, ",");
       while (tmp) {
@@ -243,7 +245,7 @@ void loop(void)
         client.fastrprintln(F("HTTP/1.1 200 OK"));
         // Then send a few headers to identify the type of data returned and that
         // the connection will not be held open.
-        client.fastrprintln(F("Content-Type: text/html"));
+        client.fastrprintln(F("Content-Type: text/html; charset=utf-8"));
 
 
         client.fastrprintln(F("Connection: close"));
@@ -280,7 +282,12 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 	// Now send the response data.
 	client.fastrprintln(
 			F("<meta name=\"viewport\" content=\"width=device-width\">"));
-	client.fastrprintln(F("<a href=\"rest\"><h1>Smart Fazenda</h1></a>"));
+
+	client.fastrprintln(
+				F("<meta http-equiv=\"refresh\" content=\"10; url=/rest\">"));
+
+
+	client.fastrprintln(F("<a href=\"rest\"><h1>Умная дача</h1></a>"));
 	client.fastrprint(F("You accessed path: "));
 	client.fastrprintln(path);
 
@@ -290,7 +297,7 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 
 	//Valve 1
 
-	client.fastrprintln(F("<tr><td colspan=2> Valve 1 </td></tr>"));
+	client.fastrprintln(F("<tr><td colspan=2> Клапан №1 </td></tr>"));
 
 	client.fastrprintln(F("<tr>"));
 	client.fastrprintln(F("<td>"));
@@ -301,9 +308,9 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 
 
 	if(valve1_on==true)
-		client.fastrprint(F("<input type=\"submit\" value=\"Open\" disabled>"));
+		client.fastrprint(F("<input type=\"submit\" value=\"Открыть\" disabled>"));
 	else
-		client.fastrprint(F("<input type=\"submit\" value=\"Open\">"));
+		client.fastrprint(F("<input type=\"submit\" value=\"Открыть\">"));
 
 	client.fastrprint(F("</form>"));
 
@@ -315,9 +322,9 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 			F("<input type=\"hidden\" name=\"valve_1\" value=\"off\">"));
 
 	if(valve1_on==true)
-		client.fastrprint(F("<input type=\"submit\" value=\"Close\">"));
+		client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\">"));
 	else
-		client.fastrprint(F("<input type=\"submit\" value=\"Close\" disabled>"));
+		client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\" disabled>"));
 
 	client.fastrprint(F("</form>"));
 
@@ -326,7 +333,7 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 
 	//Valve 2
 
-	client.fastrprintln(F("<tr><td colspan=2> Valve 2 </td></tr>"));
+	client.fastrprintln(F("<tr><td colspan=2> Клапан №2 </td></tr>"));
 
 	client.fastrprintln(F("<tr>"));
 	client.fastrprintln(F("<td>"));
@@ -336,9 +343,9 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 			F("<input type=\"hidden\" name=\"valve_2\" value=\"on\">"));
 
 	if(valve2_on==true)
-			client.fastrprint(F("<input type=\"submit\" value=\"Open\" disabled>"));
+			client.fastrprint(F("<input type=\"submit\" value=\"Открыть\" disabled>"));
 		else
-			client.fastrprint(F("<input type=\"submit\" value=\"Open\">"));
+			client.fastrprint(F("<input type=\"submit\" value=\"Открыть\">"));
 
 
 	client.fastrprint(F("</form>"));
@@ -351,11 +358,54 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 			F("<input type=\"hidden\" name=\"valve_2\" value=\"off\">"));
 
 	if(valve2_on==true)
-			client.fastrprint(F("<input type=\"submit\" value=\"Close\">"));
+			client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\">"));
 		else
-			client.fastrprint(F("<input type=\"submit\" value=\"Close\" disabled>"));
+			client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\" disabled>"));
+
+	client.fastrprint(F("</form>"));
+
+	client.fastrprintln(F("</td>"));
+	client.fastrprintln(F("</tr>"));
 
 
+	//Pump 1
+
+
+
+	if(pump1_start_time>0) {
+		client.fastrprintln(F("<tr><td colspan=2> Насос №1 (работает "));
+		client.println(( (millis()-pump1_start_time)/1000));
+		client.fastrprintln(F(" сек.)</td></tr>"));
+	} else {
+		client.fastrprintln(F("<tr><td colspan=2> Насос №1 </td></tr>"));
+	}
+
+	client.fastrprintln(F("<tr>"));
+	client.fastrprintln(F("<td>"));
+
+	client.fastrprint(F("<form action=\"rest\">"));
+	client.fastrprint(
+			F("<input type=\"hidden\" name=\"pump_1\" value=\"on\">"));
+
+	if(pump1_on==true)
+			client.fastrprint(F("<input type=\"submit\" value=\"Включить\" disabled>"));
+		else
+			client.fastrprint(F("<input type=\"submit\" value=\"Включить\">"));
+
+
+	client.fastrprint(F("</form>"));
+
+	client.fastrprintln(F("</td>"));
+	client.fastrprintln(F("<td>"));
+
+	client.fastrprint(F("<form action=\"rest\">"));
+	client.fastrprint(
+			F("<input type=\"hidden\" name=\"pump_1\" value=\"off\">"));
+
+	if(pump1_on==true)
+			client.fastrprint(F("<input type=\"submit\" value=\"Выключить\">"));
+		else
+			client.fastrprint(F("<input type=\"submit\" value=\"Выключить\" disabled>"));
 
 	client.fastrprint(F("</form>"));
 
@@ -364,12 +414,7 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 
 	client.fastrprintln(F("</table>"));
 
-	client.fastrprintln(F("<h2> status: </h2>"));
-	client.fastrprint(F("valve1_on="));
-	client.println(valve1_on);
-	client.fastrprintln(F("<br>"));
-	client.fastrprint(F("valve2_on="));
-	client.println(valve2_on);
+
 
 
 }
@@ -385,27 +430,40 @@ void runcmd(String cmd, String val) {
 	if (cmd.compareTo(F("valve_1")) == 0 && val.compareTo(F("on")) == 0) {
 		valve1_on = true;
 		Serial.println(F("valve1_on"));
-	}
+	} else
 	if (cmd.compareTo(F("valve_1")) == 0 && val.compareTo(F("off")) == 0) {
 		valve1_on = false;
 		Serial.println(F("valve1_off"));
-	}
+	} else
 	if (cmd.compareTo(F("valve_2")) == 0 && val.compareTo(F("on")) == 0) {
 		valve2_on = true;
 		Serial.println(F("valve2_on"));
-	}
+	} else
 	if (cmd.compareTo(F("valve_2")) == 0 && val.compareTo(F("off")) == 0) {
 		valve2_on = false;
 		Serial.println(F("valve2_off"));
+	} else
+	if (cmd.compareTo(F("pump_1")) == 0 && val.compareTo(F("on")) == 0) {
+		pump1_on = true;
+		pump1_start_time = millis();
+		Serial.println(F("pump1_on"));
+	} else
+	if (cmd.compareTo(F("pump_1")) == 0 && val.compareTo(F("off")) == 0) {
+		pump1_on = false;
+		pump1_start_time = 0;
+		Serial.println(F("pump1_off"));
 	}
 
 	Serial.print(F("out:"));
 
-	Serial.print(F("valve1_on="));
-		Serial.println(valve1_on);
+	Serial.print(F("valve1="));
+	Serial.println(valve1_on);
 
-		Serial.print(F("valve2_on="));
-		Serial.println(valve2_on);
+	Serial.print(F("valve2="));
+	Serial.println(valve2_on);
+
+	Serial.print(F("pump1="));
+	Serial.println(pump1_on);
 }
 
 // Return true if the buffer contains an HTTP request.  Also returns the request
