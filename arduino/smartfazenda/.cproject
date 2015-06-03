@@ -18,16 +18,30 @@
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="it.baeyens.arduino.targetplatform.1174804867" name="Arduino Target" osList="all" superClass="it.baeyens.arduino.targetplatform"/>
 							<builder buildPath="${workspace_loc:/smartfazenda}/Release" id="it.baeyens.arduino.sketch.builder.349969160" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Arduino sketch builder" superClass="it.baeyens.arduino.sketch.builder"/>
 							<tool id="it.baeyens.arduino.tool.sketch.compiler.cpp.1824752412" name="Arduino C++ Compiler" superClass="it.baeyens.arduino.tool.sketch.compiler.cpp">
-								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1477957439" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
+								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1477957439" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/EEPROM}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire/utility}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.970082160" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
 							</tool>
 							<tool id="it.baeyens.arduino.tool.compiler.c.1294359428" name="Arduino C Compiler" superClass="it.baeyens.arduino.tool.compiler.c">
-								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.13786610" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
+								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.13786610" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/EEPROM}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire/utility}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.37063788" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
 							</tool>
@@ -63,16 +77,36 @@
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="it.baeyens.arduino.targetplatform.1730643456" name="Arduino Target" osList="all" superClass="it.baeyens.arduino.targetplatform"/>
 							<builder buildPath="${workspace_loc:/smartfazenda}/Debug_AVaRICE" id="it.baeyens.arduino.sketch.builder.1633915980" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Arduino sketch builder" superClass="it.baeyens.arduino.sketch.builder"/>
 							<tool id="it.baeyens.arduino.tool.sketch.compiler.cpp.860741695" name="Arduino C++ Compiler" superClass="it.baeyens.arduino.tool.sketch.compiler.cpp">
-								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1806750985" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
+								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1806750985" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/EEPROM}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire/utility}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.806872363" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
 							</tool>
 							<tool id="it.baeyens.arduino.tool.compiler.c.622213389" name="Arduino C Compiler" superClass="it.baeyens.arduino.tool.compiler.c">
-								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.1088262437" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
+								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.1088262437" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/arduino/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Adafruit_CC3000_Library-master/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/CC3000_MDNS-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/EEPROM}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/smartfazenda/Libraries/Wire/utility}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.1324759668" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
 							</tool>
