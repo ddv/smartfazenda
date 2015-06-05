@@ -54,23 +54,34 @@ int bufindex = 0;
 char action[MAX_ACTION + 1];
 char path[MAX_PATH + 1];
 
-boolean valve1_state = false;
-boolean valve2_state = false;
-boolean valve3_state = false;
-boolean valve4_state = false;
 
-char CMD_VALVE_1_ON[] PROGMEM = "VALVE_1_ON";
-char CMD_VALVE_1_OFF[] PROGMEM = "VALVE_1_OFF";
-char CMD_VALVE_2_ON[] PROGMEM = "VALVE_2_ON";
-char CMD_VALVE_2_OFF[] PROGMEM = "VALVE_2_OFF";
-char CMD_VALVE_3_ON[] PROGMEM = "VALVE_3_ON";
-char CMD_VALVE_3_OFF[] PROGMEM = "VALVE_3_OFF";
-char CMD_VALVE_4_ON[] PROGMEM = "VALVE_4_ON";
-char CMD_VALVE_4_OFF[] PROGMEM = "VALVE_4_OFF";
+#define TZ_SIZE 16 //Размер телезоны
 
-const char* const I2C_CMD[] PROGMEM = { CMD_VALVE_1_ON, CMD_VALVE_1_OFF,
-		CMD_VALVE_2_ON, CMD_VALVE_2_OFF, CMD_VALVE_3_ON, CMD_VALVE_3_OFF,
-		CMD_VALVE_4_ON, CMD_VALVE_4_OFF };
+// состояния клапанов
+boolean valve_1_state = false;
+boolean valve_2_state = false;
+boolean valve_3_state = false;
+boolean valve_4_state = false;
+
+// состояния насоса в скважине
+boolean pump_well_work_state = false;
+// состояния датчика минимального уровня воды в скважине
+boolean well_level_min_state = false;
+
+// состояния насоса в бочке
+boolean pump_tank_work_state = false;
+
+// Уровень воды в бочке (верхний)
+boolean tank_level_high = false;
+
+// Уровень воды в бочке (средний)
+boolean tank_level_middle = false;
+
+// Расход воды
+uint32_t water_out_flow_rate = -1; // 0x01020304; //16909060
+
+// Приход воды
+uint32_t water_in_flow_rate = -1; // 0x01020304; //16909060
 
 boolean pump1_on = false;
 unsigned long pump1_start_time = 0;
@@ -82,6 +93,9 @@ void setup(void) {
 	Serial.println(F("Project 'Smart Fazenda'"));
 
 	Wire.begin(); // join i2c bus (address optional for master)
+
+	//Запрос телезоны
+	requestSlaveTelezone();
 
 	Serial.print(F("Free RAM: "));
 	Serial.println(getFreeRam(), DEC);
@@ -114,12 +128,10 @@ void setup(void) {
 		delay(1000);
 	}
 
-
-
 	// Start listening for connections
 	httpServer.begin();
 
-	Serial.println(F("Listening for connections..."));
+	Serial.println(F("Listen..."));
 }
 
 void loop(void) {
@@ -160,13 +172,13 @@ void loop(void) {
 
 			//
 			String s = String(path);
-			Serial.println(F("test: "));
+//			Serial.println(F("test: "));
 
 			int i = s.indexOf("?");
 			String mode = s.substring(0, i);
-			Serial.print(F("mode["));
-			Serial.print(mode);
-			Serial.println(F("]"));
+//			Serial.print(F("mode["));
+//			Serial.print(mode);
+//			Serial.println(F("]"));
 
 			if (mode.compareTo(F("/rest")) == 0) {
 
@@ -228,10 +240,143 @@ void loop(void) {
 		Serial.println(F("Client disconnected"));
 		client.close();
 	}
+
+}
+
+// Запрос телезоны у слейва
+void requestSlaveTelezone() {
+
+
+//	uint32_t water_in_flow_rate = -1;
+//	uint32_t water_out_flow_rate = -1;
+
+	Serial.println("TZ");
+	// Запрос телезоны
+	Wire.requestFrom(REALAY_MODULE_SLAVE_ID, TZ_SIZE);
+
+	int respVals[4];
+	uint8_t respIoIndex = 0;
+
+
+
+//	if (Wire.available()) {
+//		//Читаем состояния клапанов
+//		for (byte r = 0; r < 8; r++) {
+//			if (Wire.available()) {
+//				uint8_t data = (uint8_t) Wire.read();
+//				respVals[respIoIndex] = data;
+//				respIoIndex++;
+//				Serial.print("v=");
+//				Serial.println(data);
+//			} else {
+//				// log or handle error: "missing read"; if you are not going to do so use r index instead of respIoIndex and delete respoIoIndex from this for loop
+//				Serial.println("ERROR");
+//				break;
+//			}
+//		}
+//
+//	}
+
+	// Телевостояния
+	if (Wire.available()>=8) {
+		valve_1_state = (uint8_t) Wire.read();
+		valve_2_state = (uint8_t) Wire.read();
+		valve_3_state = (uint8_t) Wire.read();
+		valve_4_state = (uint8_t) Wire.read();
+
+		pump_well_work_state = (uint8_t) Wire.read();
+		well_level_min_state = (uint8_t) Wire.read();
+		tank_level_high = (uint8_t) Wire.read();
+		tank_level_middle = (uint8_t) Wire.read();
+	}
+
+//	Serial.println("TS:");
+	Serial.println(valve_1_state);
+	Serial.println(valve_2_state);
+	Serial.println(valve_3_state);
+	Serial.println(valve_4_state);
+//
+//	Serial.println(pump_well_work_state);
+//	Serial.println(well_level_min_state);
+//	Serial.println(tank_level_high);
+//	Serial.println(tank_level_middle);
+
+	//Читаем приход воды
+	if (Wire.available()>=4) {
+		water_in_flow_rate = (uint32_t) Wire.read();
+		water_in_flow_rate += ((uint32_t) Wire.read()) << 8;
+		water_in_flow_rate += ((uint32_t) Wire.read()) << 16;
+		water_in_flow_rate += ((uint32_t) Wire.read()) << 24;
+	} else {
+		Serial.println("ERROR");
+	}
+
+
+//	Serial.println("IN");
+//	Serial.println(water_in_flow_rate);
+
+	//Читаем расход воды
+	if (Wire.available()>=4) {
+		water_out_flow_rate = (uint32_t) Wire.read();
+		water_out_flow_rate += ((uint32_t) Wire.read()) << 8;
+		water_out_flow_rate += ((uint32_t) Wire.read()) << 16;
+		water_out_flow_rate += ((uint32_t) Wire.read()) << 24;
+	} else {
+		Serial.println("ERROR");
+	}
+
+
+//	Serial.println("OUT");
+//	Serial.println(water_out_flow_rate);
+
+
+}
+
+void showFormValve(Adafruit_CC3000_ClientRef client, int valve, boolean state) {
+
+	client.fastrprintln(F("<tr><td colspan=2> Клапан №1 </td></tr>"));
+
+	client.fastrprintln(F("<tr>"));
+	client.fastrprintln(F("<td>"));
+
+	client.fastrprint(F("<form action=\"rest\">"));
+	client.fastrprint(F("<input type=\"hidden\" name=\"valve_"));
+	client.print(valve);
+	client.fastrprint(F("\" value=\"on\">"));
+
+	if (state == true)
+		client.fastrprint(
+				F("<input type=\"submit\" value=\"Открыть\" disabled>"));
+	else
+		client.fastrprint(F("<input type=\"submit\" value=\"Открыть\">"));
+
+	client.fastrprint(F("</form>"));
+
+	client.fastrprintln(F("</td>"));
+	client.fastrprintln(F("<td>"));
+
+	client.fastrprint(F("<form action=\"rest\">"));
+	client.fastrprint(F("<input type=\"hidden\" name=\"valve_"));
+	client.print(valve);
+	client.fastrprint(F("\" value=\"off\">"));
+
+	if (state == true)
+		client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\">"));
+	else
+		client.fastrprint(
+				F("<input type=\"submit\" value=\"Закрыть\" disabled>"));
+
+	client.fastrprint(F("</form>"));
+
+	client.fastrprintln(F("</td>"));
+	client.fastrprintln(F("</tr>"));
 }
 
 // Form
 void showForm(Adafruit_CC3000_ClientRef client) {
+
+	//Запрос телезоны
+	requestSlaveTelezone();
 
 	client.fastrprintln(F(""));
 	// Now send the response data.
@@ -247,207 +392,119 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 
 	client.fastrprintln(F("<table>"));
 
-	//Valve 1
-
-	client.fastrprintln(F("<tr><td colspan=2> Клапан №1 </td></tr>"));
-
-	client.fastrprintln(F("<tr>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"valve_1\" value=\"on\">"));
-
-	if (valve1_state == true)
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Открыть\" disabled>"));
-	else
-		client.fastrprint(F("<input type=\"submit\" value=\"Открыть\">"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"valve_1\" value=\"off\">"));
-
-	if (valve1_state == true)
-		client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\">"));
-	else
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Закрыть\" disabled>"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("</tr>"));
-
-	//Valve 2
-
-	client.fastrprintln(F("<tr><td colspan=2> Клапан №2 </td></tr>"));
-
-	client.fastrprintln(F("<tr>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"valve_2\" value=\"on\">"));
-
-	if (valve2_state == true)
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Открыть\" disabled>"));
-	else
-		client.fastrprint(F("<input type=\"submit\" value=\"Открыть\">"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"valve_2\" value=\"off\">"));
-
-	if (valve2_state == true)
-		client.fastrprint(F("<input type=\"submit\" value=\"Закрыть\">"));
-	else
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Закрыть\" disabled>"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("</tr>"));
+	showFormValve(client, 1, valve_1_state);
+	showFormValve(client, 2, valve_2_state);
+	showFormValve(client, 3, valve_3_state);
+	showFormValve(client, 4, valve_4_state);
 
 	//Pump 1
 
-	if (pump1_start_time > 0) {
-		client.fastrprintln(F("<tr><td colspan=2> Насос №1 (работает "));
-		client.println(((millis() - pump1_start_time) / 1000));
-		client.fastrprintln(F(" сек.)</td></tr>"));
-	} else {
-		client.fastrprintln(F("<tr><td colspan=2> Насос №1 </td></tr>"));
-	}
-
-	client.fastrprintln(F("<tr>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"pump_1\" value=\"on\">"));
-
-	if (pump1_on == true)
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Включить\" disabled>"));
-	else
-		client.fastrprint(F("<input type=\"submit\" value=\"Включить\">"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("<td>"));
-
-	client.fastrprint(F("<form action=\"rest\">"));
-	client.fastrprint(
-			F("<input type=\"hidden\" name=\"pump_1\" value=\"off\">"));
-
-	if (pump1_on == true)
-		client.fastrprint(F("<input type=\"submit\" value=\"Выключить\">"));
-	else
-		client.fastrprint(
-				F("<input type=\"submit\" value=\"Выключить\" disabled>"));
-
-	client.fastrprint(F("</form>"));
-
-	client.fastrprintln(F("</td>"));
-	client.fastrprintln(F("</tr>"));
+//	if (pump1_start_time > 0) {
+//		client.fastrprintln(F("<tr><td colspan=2> Насос №1 (работает "));
+//		client.println(((millis() - pump1_start_time) / 1000));
+//		client.fastrprintln(F(" сек.)</td></tr>"));
+//	} else {
+//		client.fastrprintln(F("<tr><td colspan=2> Насос №1 </td></tr>"));
+//	}
+//
+//	client.fastrprintln(F("<tr>"));
+//	client.fastrprintln(F("<td>"));
+//
+//	client.fastrprint(F("<form action=\"rest\">"));
+//	client.fastrprint(
+//			F("<input type=\"hidden\" name=\"pump_1\" value=\"on\">"));
+//
+//	if (pump1_on == true)
+//		client.fastrprint(
+//				F("<input type=\"submit\" value=\"Включить\" disabled>"));
+//	else
+//		client.fastrprint(F("<input type=\"submit\" value=\"Включить\">"));
+//
+//	client.fastrprint(F("</form>"));
+//
+//	client.fastrprintln(F("</td>"));
+//	client.fastrprintln(F("<td>"));
+//
+//	client.fastrprint(F("<form action=\"rest\">"));
+//	client.fastrprint(
+//			F("<input type=\"hidden\" name=\"pump_1\" value=\"off\">"));
+//
+//	if (pump1_on == true)
+//		client.fastrprint(F("<input type=\"submit\" value=\"Выключить\">"));
+//	else
+//		client.fastrprint(
+//				F("<input type=\"submit\" value=\"Выключить\" disabled>"));
+//
+//	client.fastrprint(F("</form>"));
+//
+//	client.fastrprintln(F("</td>"));
+//	client.fastrprintln(F("</tr>"));
 
 	client.fastrprintln(F("</table>"));
 
 }
 
 void runcmd(String cmd, String val) {
-	Serial.print(F("CMD: ["));
-	Serial.print(cmd);
-	Serial.print(F("]=["));
-	Serial.print(val);
-	Serial.println(F("]"));
 
 	if (cmd.compareTo(F("valve_1")) == 0 && val.compareTo(F("on")) == 0) {
-		valve1_state = true;
-		Serial.println(F("valve1_on"));
-
-		sendCommand2Slave(1, valve1_state);
+		sendCommand2Slave(1, true);
 
 	} else if (cmd.compareTo(F("valve_1")) == 0
 			&& val.compareTo(F("off")) == 0) {
-		valve1_state = false;
-		Serial.println(F("valve1_off"));
-
-		sendCommand2Slave(1, valve1_state);
+		sendCommand2Slave(1, false);
 
 	} else if (cmd.compareTo(F("valve_2")) == 0
 			&& val.compareTo(F("on")) == 0) {
-		valve2_state = true;
-		Serial.println(F("valve2_on"));
-
-		sendCommand2Slave(2, valve2_state);
+		sendCommand2Slave(2, true);
 
 	} else if (cmd.compareTo(F("valve_2")) == 0
 			&& val.compareTo(F("off")) == 0) {
-		valve2_state = false;
-		Serial.println(F("valve2_off"));
+		sendCommand2Slave(2, false);
 
-		sendCommand2Slave(2, valve2_state);
+	} else if (cmd.compareTo(F("valve_3")) == 0
+			&& val.compareTo(F("on")) == 0) {
+		sendCommand2Slave(3, true);
 
-	} else if (cmd.compareTo(F("pump_1")) == 0 && val.compareTo(F("on")) == 0) {
+	} else if (cmd.compareTo(F("valve_3")) == 0
+			&& val.compareTo(F("off")) == 0) {
+		sendCommand2Slave(3, false);
+
+	} else if (cmd.compareTo(F("valve_4")) == 0
+			&& val.compareTo(F("on")) == 0) {
+		sendCommand2Slave(4, true);
+
+	} else if (cmd.compareTo(F("valve_4")) == 0
+			&& val.compareTo(F("off")) == 0) {
+		sendCommand2Slave(4, false);
+
+	}
+
+	else if (cmd.compareTo(F("pump_1")) == 0 && val.compareTo(F("on")) == 0) {
 		pump1_on = true;
 		pump1_start_time = millis();
-		Serial.println(F("pump1_on"));
 	} else if (cmd.compareTo(F("pump_1")) == 0
 			&& val.compareTo(F("off")) == 0) {
 		pump1_on = false;
 		pump1_start_time = 0;
-		Serial.println(F("pump1_off"));
 	}
 
-	Serial.print(F("out:"));
-
-	Serial.print(F("valve1="));
-	Serial.println(valve1_state);
-
-	Serial.print(F("valve2="));
-	Serial.println(valve2_state);
-
-	Serial.print(F("pump1="));
-	Serial.println(pump1_on);
 }
 
 // Посылка команды слейву
 void sendCommand2Slave(int valve, boolean mode) {
 
 	Wire.beginTransmission(REALAY_MODULE_SLAVE_ID); // transmit to device #4
+	String s = String("VALVE_");
+	s.concat(valve);
+	s.concat('=');
+	s.concat(mode);
+//	Serial.println(s);
+//	Serial.print("String[");
+//	Serial.print("][");
+//	Serial.print(s.c_str());
+//	Serial.println("]");
+	Wire.write(s.c_str());
 
-	if (valve == 1) {
-		if (mode) {
-//			Wire.write(I2C_CMD[0]);
-
-			Wire.write("VALVE_1_ON");
-		} else {
-
-			Wire.write("VALVE_1_OFF");
-		}
-
-	} else if (valve == 2) {
-		if (mode) {
-			Wire.write("VALVE_2_ON");
-		} else {
-			Wire.write("VALVE_2_OFF");
-		}
-
-	}
 	Wire.endTransmission();    // stop transmitting
 
 }
@@ -494,15 +551,15 @@ bool displayConnectionDetails(void) {
 		Serial.println(F("Unable to retrieve the IP Address!\r\n"));
 		return false;
 	} else {
-		Serial.print(F("\nIP Addr: "));
+		Serial.print(F("\nIP: "));
 		cc3000.printIPdotsRev(ipAddress);
-		Serial.print(F("\nNetmask: "));
+		Serial.print(F("\nMask: "));
 		cc3000.printIPdotsRev(netmask);
-		Serial.print(F("\nGateway: "));
+		Serial.print(F("\nGW: "));
 		cc3000.printIPdotsRev(gateway);
-		Serial.print(F("\nDHCPsrv: "));
+		Serial.print(F("\nDHCP: "));
 		cc3000.printIPdotsRev(dhcpserv);
-		Serial.print(F("\nDNSserv: "));
+		Serial.print(F("\nDNS: "));
 		cc3000.printIPdotsRev(dnsserv);
 		Serial.println();
 		return true;

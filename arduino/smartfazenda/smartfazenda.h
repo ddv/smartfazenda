@@ -28,8 +28,7 @@ bool parseRequest(uint8_t* buf, int bufSize, char* action, char* path);
 void runcmd(String cmd, String val);
 void showForm(Adafruit_CC3000_ClientRef client);
 void sendCommand2Slave(int valve, boolean mode);
-
-
+void requestSlaveTelezone();
 
 //Do not add code below this line
 #endif /* _smartfazenda_H_ */

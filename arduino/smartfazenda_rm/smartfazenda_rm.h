@@ -23,9 +23,8 @@ void setup();
 //add your function definitions for the project smartfazenda_rm here
 
 void receiveEvent(int howMany);
-void requestEvent();
+void requestTeleZone();
 void cmdValve(int valve, boolean state);
-void requestStatusValve(int valve);
 void blink(int valve, boolean state);
 
 
