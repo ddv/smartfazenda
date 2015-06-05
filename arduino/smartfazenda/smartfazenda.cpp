@@ -55,7 +55,7 @@ char action[MAX_ACTION + 1];
 char path[MAX_PATH + 1];
 
 
-#define TZ_SIZE 16 //Размер телезоны
+#define TZ_SIZE 20 //Размер телезоны
 
 // состояния клапанов
 boolean valve_1_state = false;
@@ -87,6 +87,9 @@ boolean pump1_on = false;
 unsigned long pump1_start_time = 0;
 
 uint16_t input_water_flow = 0;
+
+// код ошибки
+uint32_t error_state = -1;
 
 void setup(void) {
 	Serial.begin(115200);
@@ -250,14 +253,13 @@ void requestSlaveTelezone() {
 //	uint32_t water_in_flow_rate = -1;
 //	uint32_t water_out_flow_rate = -1;
 
-	Serial.println("TZ");
+//	Serial.println("TZ");
 	// Запрос телезоны
 	Wire.requestFrom(REALAY_MODULE_SLAVE_ID, TZ_SIZE);
 
-	int respVals[4];
-	uint8_t respIoIndex = 0;
-
-
+	if (Wire.available() != TZ_SIZE) {
+		Serial.println("TZ ERROR");
+	}
 
 //	if (Wire.available()) {
 //		//Читаем состояния клапанов
@@ -278,7 +280,7 @@ void requestSlaveTelezone() {
 //	}
 
 	// Телевостояния
-	if (Wire.available()>=8) {
+//	if (Wire.available()>=8) {
 		valve_1_state = (uint8_t) Wire.read();
 		valve_2_state = (uint8_t) Wire.read();
 		valve_3_state = (uint8_t) Wire.read();
@@ -288,13 +290,13 @@ void requestSlaveTelezone() {
 		well_level_min_state = (uint8_t) Wire.read();
 		tank_level_high = (uint8_t) Wire.read();
 		tank_level_middle = (uint8_t) Wire.read();
-	}
+//	}
 
 //	Serial.println("TS:");
-	Serial.println(valve_1_state);
-	Serial.println(valve_2_state);
-	Serial.println(valve_3_state);
-	Serial.println(valve_4_state);
+//	Serial.println(valve_1_state);
+//	Serial.println(valve_2_state);
+//	Serial.println(valve_3_state);
+//	Serial.println(valve_4_state);
 //
 //	Serial.println(pump_well_work_state);
 //	Serial.println(well_level_min_state);
@@ -302,28 +304,38 @@ void requestSlaveTelezone() {
 //	Serial.println(tank_level_middle);
 
 	//Читаем приход воды
-	if (Wire.available()>=4) {
+//	if (Wire.available()>=4) {
 		water_in_flow_rate = (uint32_t) Wire.read();
 		water_in_flow_rate += ((uint32_t) Wire.read()) << 8;
 		water_in_flow_rate += ((uint32_t) Wire.read()) << 16;
 		water_in_flow_rate += ((uint32_t) Wire.read()) << 24;
-	} else {
-		Serial.println("ERROR");
-	}
+//	} else {
+//		Serial.println("ERROR");
+//	}
 
 
 //	Serial.println("IN");
 //	Serial.println(water_in_flow_rate);
 
 	//Читаем расход воды
-	if (Wire.available()>=4) {
+//	if (Wire.available() >= 4) {
 		water_out_flow_rate = (uint32_t) Wire.read();
 		water_out_flow_rate += ((uint32_t) Wire.read()) << 8;
 		water_out_flow_rate += ((uint32_t) Wire.read()) << 16;
 		water_out_flow_rate += ((uint32_t) Wire.read()) << 24;
-	} else {
-		Serial.println("ERROR");
-	}
+//	} else {
+//		Serial.println("ERROR");
+//	}
+
+	//Читаем код ошибки
+//	if (Wire.available() >= 4) {
+		error_state = (uint32_t) Wire.read();
+		error_state += ((uint32_t) Wire.read()) << 8;
+		error_state += ((uint32_t) Wire.read()) << 16;
+		error_state += ((uint32_t) Wire.read()) << 24;
+//	} else {
+//		Serial.println("ERROR");
+//	}
 
 
 //	Serial.println("OUT");
@@ -335,6 +347,8 @@ void requestSlaveTelezone() {
 void showFormValve(Adafruit_CC3000_ClientRef client, int valve, boolean state) {
 
 	client.fastrprintln(F("<tr><td colspan=2> Клапан №1 </td></tr>"));
+	client.print(valve);
+	client.fastrprintln(F("</td></tr>"));
 
 	client.fastrprintln(F("<tr>"));
 	client.fastrprintln(F("<td>"));
@@ -387,8 +401,15 @@ void showForm(Adafruit_CC3000_ClientRef client) {
 			F("<meta http-equiv=\"refresh\" content=\"10; url=/rest\">"));
 
 	client.fastrprintln(F("<a href=\"rest\"><h1>Умная дача</h1></a>"));
-	client.fastrprint(F("You accessed path: "));
-	client.fastrprintln(path);
+//	client.fastrprint(F(" path: "));
+//	client.fastrprintln(path);
+	client.fastrprint(F(" ERR:"));
+	client.print(error_state);
+	client.fastrprint(F(" IN:"));
+	client.print(water_in_flow_rate);
+	client.fastrprint(F(" OUT:"));
+	client.print(water_out_flow_rate);
+
 
 	client.fastrprintln(F("<table>"));
 

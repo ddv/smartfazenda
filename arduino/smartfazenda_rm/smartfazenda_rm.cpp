@@ -12,7 +12,10 @@
 
 #define STATUS_PIN   13  // Информационная лампочка
 
-#define TZ_SIZE 16 //Размер телезоны
+#define TZ_SIZE 20 //Размер телезоны
+
+// Ошибка - слишком много клапанов хотите открыть
+const int ERR_TOO_MANY_VALVES_OPPENED = 0x01;
 
 // состояния клапанов
 boolean valve_1_state = false;
@@ -35,10 +38,13 @@ boolean tank_level_high = false;
 boolean tank_level_middle = false;
 
 // Расход воды
-uint32_t water_out_flow_rate = 16909060; // 0x01020304; //16909060
+uint32_t water_out_flow_rate = 0; // 0x01020304; //16909060
 
 // Приход воды
-uint32_t water_in_flow_rate = 17908030; // 0x01020304; //16909060
+uint32_t water_in_flow_rate = 0; // 0x01020304; //16909060
+
+// код ошибки
+uint32_t error_state = 0;
 
 void setup() {
 
@@ -71,6 +77,10 @@ void loop() {
 		blink(4, true);
 
 	delay(500);
+
+	//TEST
+	water_in_flow_rate+=2;
+	water_out_flow_rate++;
 }
 
 // function that executes whenever data is received from master
@@ -98,7 +108,7 @@ void receiveEvent(int howMany) {
 		cmdValve(3, false);
 	} else if (s.compareTo(F("VALVE_4=1")) == 0) {
 		cmdValve(4, true);
-	} else if (s.compareTo(F("VALVE_4_0")) == 0) {
+	} else if (s.compareTo(F("VALVE_4=0")) == 0) {
 		cmdValve(4, false);
 	} else {
 		Serial.print(F("UNKNOWN CMD["));
@@ -146,12 +156,61 @@ void requestTeleZone() {
 	i2cResponse[tz_position++] = water_out_flow_rate >> 16;
 	i2cResponse[tz_position++] = water_out_flow_rate >> 24;
 
+	//Код ошибки
+	i2cResponse[tz_position++] = error_state;
+	i2cResponse[tz_position++] = error_state >> 8;
+	i2cResponse[tz_position++] = error_state >> 16;
+	i2cResponse[tz_position++] = error_state >> 24;
+
 	Wire.write(i2cResponse, tz_position);
 
+	Serial.println(F("TZ:"));
+	Serial.print(F("V1:"));
+	Serial.println(valve_1_state);
+	Serial.print(F("V2:"));
+	Serial.println(valve_2_state);
+	Serial.print(F("V3:"));
+	Serial.println(valve_3_state);
+	Serial.print(F("V4:"));
+	Serial.println(valve_4_state);
+	Serial.print(F("WATER_IN:"));
+	Serial.println(water_in_flow_rate);
+	Serial.print(F("WATER_OUT:"));
+	Serial.println(water_out_flow_rate);
+	Serial.print(F("ERR:"));
+	Serial.println(error_state);
+
+
+}
+
+// проверка клапанов (открыто больше 2-х)
+boolean checkErrorValves() {
+	int counter = 0;
+	if (valve_1_state)
+		counter++;
+	if (valve_2_state)
+		counter++;
+	if (valve_3_state)
+		counter++;
+	if (valve_4_state)
+		counter++;
+
+	if (counter >= 2)
+		return true;
+	else
+		return false;
 }
 
 // Управление клапаном
 void cmdValve(int valve, boolean state) {
+
+	// Сбрасыааем бит ошибки
+	error_state &= !ERR_TOO_MANY_VALVES_OPPENED;
+
+	if(state && checkErrorValves()) {
+		error_state |= ERR_TOO_MANY_VALVES_OPPENED;
+		return;
+	}
 
 	switch (valve) {
 	case 1:
@@ -192,6 +251,4 @@ void blink(int valve, boolean state) {
 	delay(t * 2 * (4 - valve));
 
 }
-
-
 
