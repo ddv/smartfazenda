@@ -25,8 +25,12 @@ Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS,
 ADAFRUIT_CC3000_IRQ, ADAFRUIT_CC3000_VBAT,
 SPI_CLOCK_DIVIDER); // you can change this clock speed
 
-#define WLAN_SSID       "JY-G5"   // cannot be longer than 32 characters!
-#define WLAN_PASS       "1234567890"
+//#define WLAN_SSID       "JY-G5"   // cannot be longer than 32 characters!
+//#define WLAN_PASS       "1234567890"
+
+#define WLAN_SSID       "SMARTFAZENDA"   // cannot be longer than 32 characters!
+#define WLAN_PASS       "97298953"
+
 // Security can be WLAN_SEC_UNSEC, WLAN_SEC_WEP, WLAN_SEC_WPA or WLAN_SEC_WPA2
 #define WLAN_SECURITY   WLAN_SEC_WPA2
 
@@ -100,46 +104,60 @@ void setup(void) {
 	//Запрос телезоны
 	requestSlaveTelezone();
 
+	wifiConnect();
+}
+
+void wifiConnect() {
 	Serial.print(F("Free RAM: "));
-	Serial.println(getFreeRam(), DEC);
+		Serial.println(getFreeRam(), DEC);
 
-	// Initialise the module
-	Serial.println(F("\nInitializing..."));
-	if (!cc3000.begin()) {
-		Serial.println(F("Couldn't begin()! Check your wiring?"));
-		while (1)
-			;
-	}
+		// Initialise the module
+		Serial.println(F("\nInitializing..."));
+		if (!cc3000.begin()) {
+			Serial.println(F("Couldn't begin()! Check your wiring?"));
+			while (1)
+				;
+		}
 
-	Serial.print(F("\nAttempting to connect to "));
-	Serial.println(WLAN_SSID);
-	if (!cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY)) {
-		Serial.println(F("Failed!"));
-		while (1)
-			;
-	}
+		Serial.print(F("\nAttempting to connect to "));
+		Serial.println(WLAN_SSID);
+		if (!cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY)) {
+			Serial.println(F("Failed!"));
+			while (1)
+				;
+		}
 
-	Serial.println(F("Connected!"));
+		Serial.println(F("Connected!"));
 
-	Serial.println(F("Request DHCP"));
-	while (!cc3000.checkDHCP()) {
-		delay(100); // ToDo: Insert a DHCP timeout!
-	}
+		Serial.println(F("Request DHCP"));
+		while (!cc3000.checkDHCP()) {
+			delay(100); // ToDo: Insert a DHCP timeout!
+		}
 
-	// Display the IP address DNS, Gateway, etc.
-	while (!displayConnectionDetails()) {
-		delay(1000);
-	}
+		// Display the IP address DNS, Gateway, etc.
+		while (!displayConnectionDetails()) {
+			delay(1000);
+		}
 
-	// Start listening for connections
-	httpServer.begin();
+		// Start listening for connections
+		httpServer.begin();
 
-	Serial.println(F("Listen..."));
+		Serial.println(F("Listen..."));
 }
 
 void loop(void) {
+
+
+
+	if(!cc3000.checkConnected()) {
+		wifiConnect();
+	}
+
 	// Try to get a client which is connected.
 	Adafruit_CC3000_ClientRef client = httpServer.available();
+
+
+
 	if (client) {
 		Serial.println(F("Client connected."));
 		// Process this request until it completes or times out.
