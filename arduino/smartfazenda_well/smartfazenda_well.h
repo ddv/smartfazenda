@@ -21,11 +21,16 @@ void setup();
 #endif
 
 //add your function definitions for the project smartfazenda_well here
-void wellMotorStart();
+void wellMotorRun();
 void wellMotorStop();
 boolean getWellLowLvlStatus();
 boolean getTankMaxLvlStatus();
-
+boolean checkWellMotorIsReadyToStart();
+boolean checkWellMotorNeedToStop();
+void blinkEror();
+void blinkStatus();
+void blinkWellMinLvl();
+void blinkTankllMaxLvl();
 
 
 //Do not add code below this line
