@@ -13,7 +13,7 @@
 #define PUMP_STATUS_PIN     13
 
 // Таймаут включения насоса после появления в кважине воды
-#define PUMP_START_TIMEOUT     1200000l // 2 часа
+#define PUMP_START_TIMEOUT     12000000l // 2 часа
 //#define PUMP_START_TIMEOUT     20000l
 
 // Максимальное допустимое время работы мотора
