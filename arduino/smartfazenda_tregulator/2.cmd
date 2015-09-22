@@ -1,0 +1,3 @@
+REM E:/arduino/arduino-1.5.6-r2/hardware/tools/avr/bin/avrdude -CE:/arduino/arduino-1.5.6-r2/hardware/tools/avr/etc/avrdude.conf -patmega328p -cusbasp -PCOM1 -b57600 -D -Uflash:w:C:\Users\derenok_dv\workspace.arduino\testProMini2/Release/testProMini2.hex:i
+E:/arduino/arduino-1.5.6-r2/hardware/tools/avr/bin/avrdude -CE:/arduino/arduino-1.5.6-r2/hardware/tools/avr/etc/avrdude.conf -v -v -v -v  -patmega328p -cusbasp -Pusb -Uflash:w:C:\Users\derenok_dv\workspace.arduino\testProMini2\Release\testProMini2.hex:i
+REM E:\arduino\arduino-1.5.6-r2/hardware/tools/avr/bin/avrdude -CE:\arduino\arduino-1.5.6-r2/hardware/tools/avr/etc/avrdude.conf -v -v -v -v -patmega328p -cusbasp -Pusb -Uflash:w:C:\Users\derenok_dv\workspace.arduino\testProMini2\Release\testProMini2.hex:i
