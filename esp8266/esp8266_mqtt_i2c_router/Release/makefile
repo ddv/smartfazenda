@@ -4,16 +4,13 @@
 
 -include ../makefile.init
 
-RM := rm -rf
+RM := rm -f
 
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
 -include arduino/core/spiffs/subdir.mk
 -include arduino/core/subdir.mk
--include Libraries/pubsubclient/src/subdir.mk
--include Libraries/Wire/subdir.mk
--include Libraries/ESP8266WiFi/src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -56,7 +53,7 @@ EEP += \
 esp8266_mqtt_i2c_router.eep \
 
 FLASH_IMAGE += \
-esp8266_mqtt_i2c_router.bin \
+esp8266_mqtt_i2c_router.hex \
 
 
 # All Target
@@ -66,19 +63,19 @@ all: esp8266_mqtt_i2c_router
 esp8266_mqtt_i2c_router: $(FLASH_IMAGE)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-size" -A "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/esp8266_mqtt_i2c_router.elf"
+	${JANTJE.SIZE.SWITCH}
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-ar" cru  "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/arduino.ar"   $(AR_OBJ)
+	$(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 esp8266_mqtt_i2c_router.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -g -Os -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static "-L/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//lib" "-L/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//ld" "-Teagle.flash.512k.ld" -Wl,-wrap,system_restart_local -Wl,-wrap,register_chipv6_phy  -o "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/esp8266_mqtt_i2c_router.elf" -Wl,--start-group   $(LINK_OBJ) $(AR)  "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/arduino.ar" -lm -lgcc -lhal -lphy -lnet80211 -llwip -lwpa -lmain -lpp -lsmartconfig -lwps -lcrypto -Wl,--end-group  "-L/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release"
+	$(LINK_OBJ) $(AR)
 	@echo 'Finished building: $@'
 	@echo ' '
 
@@ -88,9 +85,9 @@ esp8266_mqtt_i2c_router.eep: $(ELF)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-esp8266_mqtt_i2c_router.bin: $(EEP)
+esp8266_mqtt_i2c_router.hex: $(EEP)
 	@echo 'Create Flash image (ihex format)'
-	"/home/ddv/.arduino15/packages/esp8266/tools/esptool/0.4.5/esptool" -eo "/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/bootloaders/eboot/eboot.elf" -bo "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/esp8266_mqtt_i2c_router.bin" -bm qio -bf 40 -bz 512K -bs .text -bp 4096 -ec -eo "/home/ddv/workspace.luna/esp8266_mqtt_i2c_router/Release/esp8266_mqtt_i2c_router.elf" -bs .irom0.text -bs .text -bs .data -bs .rodata -bc -ec
+	${A.RECIPE.OBJCOPY.HEX.PATTERN}
 	@echo 'Finished building: $@'
 	@echo ' '
 

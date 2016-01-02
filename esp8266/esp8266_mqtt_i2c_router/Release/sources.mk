@@ -34,9 +34,6 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
-arduino/core/spiffs \
 arduino/core \
-Libraries/pubsubclient/src \
-Libraries/Wire \
-Libraries/ESP8266WiFi/src \
+arduino/core/spiffs \
 
