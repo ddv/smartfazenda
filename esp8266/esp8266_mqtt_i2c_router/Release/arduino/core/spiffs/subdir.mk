@@ -4,11 +4,11 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_cache.c \
-/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_check.c \
-/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_gc.c \
-/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_hydrogen.c \
-/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_nucleus.c 
+/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_cache.c \
+/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_check.c \
+/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_gc.c \
+/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_hydrogen.c \
+/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_nucleus.c 
 
 C_DEPS += \
 ./arduino/spiffs_cache.c.d \
@@ -26,38 +26,38 @@ AR_OBJ += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-arduino/spiffs_cache.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_cache.c
+arduino/spiffs_cache.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_cache.c
 	@echo 'Building file: $<'
 	@echo 'Starting C compile'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//include" -c -Os -g -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -std=gnu99 -DF_CPU=80000000L -DARDUINO=10605 -DARDUINO_ESP8266_ESP01 -DARDUINO_ARCH_ESP8266  -DESP8266   -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/variants/generic" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi/src" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/Wire" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient/src" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  -o  "$@"   -Wall
+	-I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/variants/generic" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  "$@"   -Wall
 	@echo 'Finished building: $<'
 	@echo ' '
 
-arduino/spiffs_check.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_check.c
+arduino/spiffs_check.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_check.c
 	@echo 'Building file: $<'
 	@echo 'Starting C compile'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//include" -c -Os -g -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -std=gnu99 -DF_CPU=80000000L -DARDUINO=10605 -DARDUINO_ESP8266_ESP01 -DARDUINO_ARCH_ESP8266  -DESP8266   -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/variants/generic" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi/src" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/Wire" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient/src" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  -o  "$@"   -Wall
+	-I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/variants/generic" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  "$@"   -Wall
 	@echo 'Finished building: $<'
 	@echo ' '
 
-arduino/spiffs_gc.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_gc.c
+arduino/spiffs_gc.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_gc.c
 	@echo 'Building file: $<'
 	@echo 'Starting C compile'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//include" -c -Os -g -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -std=gnu99 -DF_CPU=80000000L -DARDUINO=10605 -DARDUINO_ESP8266_ESP01 -DARDUINO_ARCH_ESP8266  -DESP8266   -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/variants/generic" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi/src" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/Wire" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient/src" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  -o  "$@"   -Wall
+	-I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/variants/generic" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  "$@"   -Wall
 	@echo 'Finished building: $<'
 	@echo ' '
 
-arduino/spiffs_hydrogen.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_hydrogen.c
+arduino/spiffs_hydrogen.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_hydrogen.c
 	@echo 'Building file: $<'
 	@echo 'Starting C compile'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//include" -c -Os -g -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -std=gnu99 -DF_CPU=80000000L -DARDUINO=10605 -DARDUINO_ESP8266_ESP01 -DARDUINO_ARCH_ESP8266  -DESP8266   -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/variants/generic" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi/src" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/Wire" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient/src" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  -o  "$@"   -Wall
+	-I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/variants/generic" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  "$@"   -Wall
 	@echo 'Finished building: $<'
 	@echo ' '
 
-arduino/spiffs_nucleus.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266/spiffs/spiffs_nucleus.c
+arduino/spiffs_nucleus.c.o: /home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266/spiffs/spiffs_nucleus.c
 	@echo 'Building file: $<'
 	@echo 'Starting C compile'
-	"/home/ddv/.arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9/bin/xtensa-lx106-elf-gcc" -D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ "-I/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/tools/sdk//include" -c -Os -g -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -std=gnu99 -DF_CPU=80000000L -DARDUINO=10605 -DARDUINO_ESP8266_ESP01 -DARDUINO_ARCH_ESP8266  -DESP8266   -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/variants/generic" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/ESP8266WiFi/src" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/1.6.5-947-g39819f0/libraries/Wire" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient" -I"/opt/arduino/arduino-1.6.5-r5/libraries/pubsubclient/src" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  -o  "$@"   -Wall
+	-I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/cores/esp8266" -I"/home/ddv/.arduino15/packages/esp8266/hardware/esp8266/2.0.0/variants/generic" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -D__IN_ECLIPSE__=1 "$<"  "$@"   -Wall
 	@echo 'Finished building: $<'
 	@echo ' '
 

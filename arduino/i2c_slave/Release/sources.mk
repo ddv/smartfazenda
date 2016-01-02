@@ -35,5 +35,6 @@ CPP_DEPS :=
 SUBDIRS := \
 . \
 arduino/core \
-arduino/core/spiffs \
+Libraries/Wire/utility \
+Libraries/Wire \
 

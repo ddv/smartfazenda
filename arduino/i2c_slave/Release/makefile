@@ -9,8 +9,9 @@ RM := rm -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include arduino/core/spiffs/subdir.mk
 -include arduino/core/subdir.mk
+-include Libraries/Wire/utility/subdir.mk
+-include Libraries/Wire/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -47,53 +48,53 @@ AR += \
 arduino.ar \
 
 ELF += \
-esp8266_mqtt_i2c_router.elf \
+i2c_slave.elf \
 
 EEP += \
-esp8266_mqtt_i2c_router.eep \
+i2c_slave.eep \
 
 FLASH_IMAGE += \
-esp8266_mqtt_i2c_router.hex \
+i2c_slave.hex \
 
 
 # All Target
-all: esp8266_mqtt_i2c_router
+all: i2c_slave
 
 # Tool invocations
-esp8266_mqtt_i2c_router: $(FLASH_IMAGE)
+i2c_slave: $(FLASH_IMAGE)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	${JANTJE.SIZE.SWITCH}
+	"/opt/arduino/arduino-1.6.5-r5/hardware/tools/avr/bin/avr-size" -A "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	$(AR_OBJ)
+	"/opt/arduino/arduino-1.6.5-r5/hardware/tools/avr/bin/avr-ar" rcs  "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/arduino.ar"   $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-esp8266_mqtt_i2c_router.elf: $(LINK_OBJ) $(AR)
+i2c_slave.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	$(LINK_OBJ) $(AR)
+	"/opt/arduino/arduino-1.6.5-r5/hardware/tools/avr/bin/avr-gcc" -Os -Wl,--gc-sections -mmcu=atmega328p  -o "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.elf"   $(LINK_OBJ) $(AR)  "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/arduino.ar" "-L/home/ddv/git/smartfazenda/arduino/i2c_slave/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
-esp8266_mqtt_i2c_router.eep: $(ELF)
+i2c_slave.eep: $(ELF)
 	@echo 'Create eeprom image'
-	${A.RECIPE.OBJCOPY.EEP.PATTERN}
+	"/opt/arduino/arduino-1.6.5-r5/hardware/tools/avr/bin/avr-objcopy" -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0  "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.elf" "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-esp8266_mqtt_i2c_router.hex: $(EEP)
+i2c_slave.hex: $(EEP)
 	@echo 'Create Flash image (ihex format)'
-	${A.RECIPE.OBJCOPY.HEX.PATTERN}
+	"/opt/arduino/arduino-1.6.5-r5/hardware/tools/avr/bin/avr-objcopy" -O ihex -R .eeprom  "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.elf" "/home/ddv/git/smartfazenda/arduino/i2c_slave/Release/i2c_slave.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C_UPPER_DEPS)$(C_DEPS)$(AR)$(EEP)$(FLASH_IMAGE)$(CC_DEPS)$(AR_OBJ)$(C++_DEPS)$(LINK_OBJ)$(CXX_DEPS)$(ASM_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(ELF)$(CPP_DEPS) esp8266_mqtt_i2c_router
+	-$(RM) $(C_UPPER_DEPS)$(C_DEPS)$(AR)$(EEP)$(FLASH_IMAGE)$(CC_DEPS)$(AR_OBJ)$(C++_DEPS)$(LINK_OBJ)$(CXX_DEPS)$(ASM_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(ELF)$(CPP_DEPS) i2c_slave
 	-@echo ' '
 
 .PHONY: all clean dependents
