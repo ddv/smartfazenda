@@ -128,15 +128,15 @@
 [Gppw]
 	MainFrameWnd:
 		Maximize	TYPE_BOOL	TRUE
-		WindowLeft	TYPE_DWORD10	88
-		WindowTop	TYPE_DWORD10	116
-		WindowRight	TYPE_DWORD10	1348
-		WindowBottom	TYPE_DWORD10	782
+		WindowLeft	TYPE_DWORD10	154
+		WindowTop	TYPE_DWORD10	177
+		WindowRight	TYPE_DWORD10	1414
+		WindowBottom	TYPE_DWORD10	919
 		StatusBar	TYPE_BOOL	TRUE
 	BrowzerWnd:
 		BrowzerFloat	TYPE_BOOL	FALSE
 		WindowLeft	TYPE_DWORD10	0
-		WindowTop	TYPE_DWORD10	204
+		WindowTop	TYPE_DWORD10	110
 		WindowRight	TYPE_DWORD10	200
 		WindowBottom	TYPE_DWORD10	900
 		BrowzerView	TYPE_BOOL	FALSE
@@ -183,7 +183,7 @@
 		MainToolBarB27	TYPE_STRING	"1c 16 7e7c 0 11 1"
 		BrowzerDoc	TYPE_DWORD16	0xe81b
 		BrowzerFloat	TYPE_BOOL	FALSE
-		BrowzerWindowRect	TYPE_STRING	"fffffffe 4c 144 6c"
+		BrowzerWindowRect	TYPE_STRING	"1d6 2e 31c 4e"
 		BrowzerToolBarView	TYPE_BOOL	TRUE
 		BrowzerToolBarB0	TYPE_STRING	"6 0 4e66 1 78 1"
 		BrowzerToolBarB1	TYPE_STRING	"6 1 0 1 c 1"
@@ -193,7 +193,7 @@
 		BrowzerToolBarB5	TYPE_STRING	"6 5 7dad 0 1 1"
 		CirGPPADoc	TYPE_DWORD16	0xe81b
 		CirGPPAFloat	TYPE_BOOL	FALSE
-		CirGPPAWindowRect	TYPE_STRING	"fffffffe 6a 27c 8e"
+		CirGPPAWindowRect	TYPE_STRING	"fffffffe 4c 27c 70"
 		CirGPPAToolBarView	TYPE_BOOL	TRUE
 		CirGPPAToolBarB0	TYPE_STRING	"1b 0 7e08 0 17 1"
 		CirGPPAToolBarB1	TYPE_STRING	"1b 1 7e09 0 18 1"
@@ -224,7 +224,7 @@
 		CirGPPAToolBarB26	TYPE_STRING	"1b 1a 7e25 0 2d 1"
 		ProgramDoc	TYPE_DWORD16	0xe81b
 		ProgramFloat	TYPE_BOOL	FALSE
-		ProgramWindowRect	TYPE_STRING	"fffffffe 8c 227 ac"
+		ProgramWindowRect	TYPE_STRING	"385 2e 5ae 4e"
 		ProgramToolBarView	TYPE_BOOL	TRUE
 		ProgramToolBarB0	TYPE_STRING	"25 1d 7ead 0 13 1"
 		ProgramToolBarB1	TYPE_STRING	"25 1e 0 1 6 1"
@@ -265,14 +265,14 @@
 		ProgramToolBarB36	TYPE_STRING	"25 80000028 7e7f 0 0 1"
 		CommentDoc	TYPE_DWORD16	0xe81b
 		CommentFloat	TYPE_BOOL	FALSE
-		CommentWindowRect	TYPE_STRING	"142 4c 180 6c"
+		CommentWindowRect	TYPE_STRING	"349 2e 387 4e"
 		CommentToolBarView	TYPE_BOOL	TRUE
 		CommentToolBarB0	TYPE_STRING	"3 0 7e5e 0 0 1"
 		CommentToolBarB1	TYPE_STRING	"3 1 7e5f 0 1 1"
 		CommentToolBarB2	TYPE_STRING	"3 80000002 7e62 0 2 1"
 		DMemoryDoc	TYPE_DWORD16	0xe81b
 		DMemoryFloat	TYPE_BOOL	FALSE
-		DMemoryWindowRect	TYPE_STRING	"17e 4c 1a5 6c"
+		DMemoryWindowRect	TYPE_STRING	"321 2e 348 4e"
 		DMemoryToolBarView	TYPE_BOOL	TRUE
 		DMemoryToolBarB0	TYPE_STRING	"7 80000002 7e7e 0 0 1"
 		DMemoryToolBarB1	TYPE_STRING	"7 80000003 7e7f 0 1 1"
@@ -283,7 +283,7 @@
 		DMemoryToolBarB6	TYPE_STRING	"7 0 7e72 0 3 1"
 		SFCDoc	TYPE_DWORD16	0xe81b
 		SFCFloat	TYPE_BOOL	FALSE
-		SFCWindowRect	TYPE_STRING	"fffffffe aa bb ca"
+		SFCWindowRect	TYPE_STRING	"4e4 4c 5a1 6c"
 		SFCToolBarView	TYPE_BOOL	TRUE
 		SFCSToolBarB0	TYPE_STRING	"9 0 7ecb 0 0 1"
 		SFCSToolBarB1	TYPE_STRING	"9 1 7ecc 0 1 1"
@@ -296,7 +296,7 @@
 		SFCSToolBarB8	TYPE_STRING	"9 8 7eff 0 6 1"
 		SFCStepDoc	TYPE_DWORD16	0xe81b
 		SFCStepFloat	TYPE_BOOL	FALSE
-		SFCStepWindowRect	TYPE_STRING	"b9 aa 325 ce"
+		SFCStepWindowRect	TYPE_STRING	"27a 4c 4e6 70"
 		SFCStepToolBarView	TYPE_BOOL	TRUE
 		SFCStepToolBarB0	TYPE_STRING	"18 0 7ec1 0 0 1"
 		SFCStepToolBarB1	TYPE_STRING	"18 1 7ec2 0 1 1"
@@ -324,7 +324,7 @@
 		SFCStepToolBarB23	TYPE_STRING	"18 17 7f05 0 16 1"
 		STEditDoc	TYPE_DWORD16	0xe81b
 		STEditFloat	TYPE_BOOL	FALSE
-		STEditWindowRect	TYPE_STRING	"fffffffe cc 13a ec"
+		STEditWindowRect	TYPE_STRING	"fffffffe 6e 13a 8e"
 		STEditToolBarView	TYPE_BOOL	FALSE
 		STEditToolBarB0	TYPE_STRING	"10 0 7f63 0 0 1"
 		STEditToolBarB1	TYPE_STRING	"10 1 7f6a 0 1 1"
@@ -347,18 +347,18 @@
 		MajorVersion	TYPE_DWORD10	8
 		MinorVersion	TYPE_STRING	"78G"
 	Project:
-		ProjectPath	TYPE_STRING	"C:\WORK\контроллер полива"
-		ProjectName	TYPE_STRING	"LE3U_controller_v2"
+		ProjectPath	TYPE_STRING	"C:\WORK\PLC"
+		ProjectName	TYPE_STRING	"WELL_CONTROLLER_LE3U"
 		ProjectComment	TYPE_STRING	""
 		ChildWndStyle	TYPE_BOOL	FALSE
 		SortType	TYPE_DWORD10	0
 	SaveTime:
-		Year	TYPE_DWORD10	2020
-		Month	TYPE_DWORD10	6
-		Day	TYPE_DWORD10	4
-		Hour	TYPE_DWORD10	23
-		Minute	TYPE_DWORD10	20
-		Second	TYPE_DWORD10	12
+		Year	TYPE_DWORD10	2021
+		Month	TYPE_DWORD10	1
+		Day	TYPE_DWORD10	2
+		Hour	TYPE_DWORD10	20
+		Minute	TYPE_DWORD10	28
+		Second	TYPE_DWORD10	1
 [Prg]
 	PrgOptDlg:
 		EditBlock	TYPE_WORD10	0
@@ -422,7 +422,7 @@
 		PRGFILE1	TYPE_STRING	"MAIN"
 		PrgCount	TYPE_WORD10	1
 		DevUsePrgOpt	TYPE_BOOL	TRUE
-		DevUseBlkOpt	TYPE_BOOL	TRUE
+		DevUseBlkOpt	TYPE_BOOL	FALSE
 		NumberOfContact	TYPE_DWORD10	9
 		NumberOfContactRight	TYPE_DWORD10	5
 	PRGFILE1_SEQ:
@@ -443,13 +443,13 @@
 		MacroInsOpt	TYPE_WORD10	0
 [Mon]
 	MonitorStatusDlg:
-		MonStatus	TYPE_BOOL	FALSE
-		DispStatus	TYPE_BOOL	FALSE
+		MonStatus	TYPE_BOOL	TRUE
+		DispStatus	TYPE_BOOL	TRUE
 		FloatState	TYPE_BOOL	FALSE
-		WindowLeft	TYPE_DWORD10	0
-		WindowTop	TYPE_DWORD10	0
-		WindowRight	TYPE_DWORD10	0
-		WindowBottom	TYPE_DWORD10	0
+		WindowLeft	TYPE_DWORD10	1439
+		WindowTop	TYPE_DWORD10	76
+		WindowRight	TYPE_DWORD10	1689
+		WindowBottom	TYPE_DWORD10	104
 	MonitorStartCond:
 		ExecCondition	TYPE_WORD10	0
 		ProgramName	TYPE_STRING	""
@@ -715,27 +715,27 @@
 	Window000:
 		DataName	TYPE_STRING	"MAIN"
 		WindowType	TYPE_DWORD10	257
-		WindowLeft	TYPE_DWORD10	14
+		WindowLeft	TYPE_DWORD10	0
 		WindowTop	TYPE_DWORD10	0
-		WindowRight	TYPE_DWORD10	1040
-		WindowBottom	TYPE_DWORD10	934
+		WindowRight	TYPE_DWORD10	836
+		WindowBottom	TYPE_DWORD10	881
 		Maximize	TYPE_BOOL	FALSE
 		Minimize	TYPE_BOOL	FALSE
 		InsFlag	TYPE_BOOL	TRUE
-		PrgMode	TYPE_WORD10	1
+		PrgMode	TYPE_WORD10	2
 		MonFlag	TYPE_BOOL	FALSE
 		FrameStat	TYPE_WORD10	1
 		StepNo	TYPE_DWORD10	-1
 		BlockNo	TYPE_WORD10	65535
-		StepPosition	TYPE_DWORD10	0
+		StepPosition	TYPE_DWORD10	43
 		ViewX	TYPE_DWORD10	0
-		ViewY	TYPE_DWORD10	1
+		ViewY	TYPE_DWORD10	0
 		WindowOrgX	TYPE_DWORD10	0
-		WindowOrgY	TYPE_DWORD10	19
+		WindowOrgY	TYPE_DWORD10	0
 		CursorPositionX	TYPE_DWORD10	1
-		CursorPositionY	TYPE_DWORD10	3
+		CursorPositionY	TYPE_DWORD10	5
 		MonitorDispType	TYPE_DWORD10	0
-		DispLabelFlag	TYPE_BOOL	FALSE
+		DispLabelFlag	TYPE_BOOL	TRUE
 		DispLabelStyle	TYPE_BOOL	FALSE
 		DispCommentFlag	TYPE_BOOL	TRUE
 		DispCommentOptFlag	TYPE_BOOL	FALSE
