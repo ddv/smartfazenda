@@ -128,24 +128,24 @@
 [Gppw]
 	MainFrameWnd:
 		Maximize	TYPE_BOOL	TRUE
-		WindowLeft	TYPE_DWORD10	33
-		WindowTop	TYPE_DWORD10	36
-		WindowRight	TYPE_DWORD10	1007
-		WindowBottom	TYPE_DWORD10	606
+		WindowLeft	TYPE_DWORD10	154
+		WindowTop	TYPE_DWORD10	203
+		WindowRight	TYPE_DWORD10	1414
+		WindowBottom	TYPE_DWORD10	866
 		StatusBar	TYPE_BOOL	TRUE
 	BrowzerWnd:
 		BrowzerFloat	TYPE_BOOL	FALSE
 		WindowLeft	TYPE_DWORD10	0
 		WindowTop	TYPE_DWORD10	140
 		WindowRight	TYPE_DWORD10	200
-		WindowBottom	TYPE_DWORD10	926
+		WindowBottom	TYPE_DWORD10	896
 		BrowzerView	TYPE_BOOL	FALSE
 	ReferenceWnd:
 		RefWndFloat	TYPE_BOOL	FALSE
 		WindowLeft	TYPE_DWORD10	0
-		WindowTop	TYPE_DWORD10	932
-		WindowRight	TYPE_DWORD10	1299
-		WindowBottom	TYPE_DWORD10	1172
+		WindowTop	TYPE_DWORD10	902
+		WindowRight	TYPE_DWORD10	1680
+		WindowBottom	TYPE_DWORD10	1142
 		RefWndView	TYPE_BOOL	TRUE
 	ToolBarWnd:
 		UserSet	TYPE_BOOL	TRUE
@@ -355,10 +355,10 @@
 	SaveTime:
 		Year	TYPE_DWORD10	2021
 		Month	TYPE_DWORD10	3
-		Day	TYPE_DWORD10	18
-		Hour	TYPE_DWORD10	16
-		Minute	TYPE_DWORD10	17
-		Second	TYPE_DWORD10	24
+		Day	TYPE_DWORD10	23
+		Hour	TYPE_DWORD10	20
+		Minute	TYPE_DWORD10	46
+		Second	TYPE_DWORD10	7
 [Prg]
 	PrgOptDlg:
 		EditBlock	TYPE_WORD10	0
@@ -688,16 +688,16 @@
 		DeviceTypeSW815	TYPE_WORD10	1
 [Cmnt]
 	SaveDevNameList:
-		SaveDevName000	TYPE_STRING	"D513"
-		SaveDevName001	TYPE_STRING	"M1"
-		SaveDevName002	TYPE_STRING	"Y000"
-		SaveDevName003	TYPE_STRING	"X000"
-		SaveDevName004	TYPE_STRING	"D512"
-		SaveDevName005	TYPE_STRING	"D1"
-		SaveDevName006	TYPE_STRING	"D100"
-		SaveDevName007	TYPE_STRING	"T0"
-		SaveDevName008	TYPE_STRING	"D500"
-		SaveDevName009	TYPE_STRING	"D0"
+		SaveDevName000	TYPE_STRING	"D510"
+		SaveDevName001	TYPE_STRING	"D513"
+		SaveDevName002	TYPE_STRING	"M1"
+		SaveDevName003	TYPE_STRING	"Y000"
+		SaveDevName004	TYPE_STRING	"X000"
+		SaveDevName005	TYPE_STRING	"D512"
+		SaveDevName006	TYPE_STRING	"D1"
+		SaveDevName007	TYPE_STRING	"D100"
+		SaveDevName008	TYPE_STRING	"T0"
+		SaveDevName009	TYPE_STRING	"D500"
 		SaveDevNameNo	TYPE_WORD10	10
 	SaveStrList:
 		SaveStr000	TYPE_STRING	"D513"
@@ -732,13 +732,13 @@
 		FrameStat	TYPE_WORD10	1
 		StepNo	TYPE_DWORD10	-1
 		BlockNo	TYPE_WORD10	65535
-		StepPosition	TYPE_DWORD10	139
+		StepPosition	TYPE_DWORD10	21
 		ViewX	TYPE_DWORD10	0
 		ViewY	TYPE_DWORD10	0
 		WindowOrgX	TYPE_DWORD10	0
 		WindowOrgY	TYPE_DWORD10	0
-		CursorPositionX	TYPE_DWORD10	5
-		CursorPositionY	TYPE_DWORD10	5
+		CursorPositionX	TYPE_DWORD10	1
+		CursorPositionY	TYPE_DWORD10	6
 		MonitorDispType	TYPE_DWORD10	0
 		DispLabelFlag	TYPE_BOOL	TRUE
 		DispLabelStyle	TYPE_BOOL	TRUE
@@ -756,10 +756,10 @@
 	Window001:
 		DataName	TYPE_STRING	"COMMENT"
 		WindowType	TYPE_DWORD10	769
-		WindowLeft	TYPE_DWORD10	999
-		WindowTop	TYPE_DWORD10	292
-		WindowRight	TYPE_DWORD10	1834
-		WindowBottom	TYPE_DWORD10	889
+		WindowLeft	TYPE_DWORD10	921
+		WindowTop	TYPE_DWORD10	280
+		WindowRight	TYPE_DWORD10	1756
+		WindowBottom	TYPE_DWORD10	877
 		Maximize	TYPE_BOOL	FALSE
 		Minimize	TYPE_BOOL	FALSE
 	Window002:
