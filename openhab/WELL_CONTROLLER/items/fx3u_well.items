@@ -1,0 +1,31 @@
+Group FX3U_WELL (All)
+
+
+Contact FX3U_WELL_M10    "Связь (M10) [%d]" <qualityofservice> (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M10:contact" }
+Contact FX3U_WELL_M0    "Авария (M0) [%d]" <error>  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M0:contact" }
+Switch  FX3U_WELL_M1    "Линия полива №1 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M1:switch" }
+Switch  FX3U_WELL_M2    "Линия полива №2 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M2:switch" }
+Switch  FX3U_WELL_M3    "Линия полива №3 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M3:switch" }
+
+Number  FX3U_WELL_D0    "Осталось работать линия №1 [%d полное секунды]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D0:number" }
+Number  FX3U_WELL_D1    "Осталось работать линия №1 [%d мин]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D1:number" }
+Number  FX3U_WELL_D3    "Осталось работать линия №1 [%d сек]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D3:number" }
+
+Number  FX3U_WELL_D4    "Осталось работать линия №2 [%d полное секунды]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D4:number" }
+Number  FX3U_WELL_D5    "Осталось работать линия №2 [%d мин]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D5:number" }
+Number  FX3U_WELL_D7    "Осталось работать линия №2 [%d сек]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D7:number" }
+
+Number  FX3U_WELL_D8    "Осталось работать линия №3 [%d полное секунды]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D8:number" }
+Number  FX3U_WELL_D9    "Осталось работать линия №3 [%d мин]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D9:number" }
+Number  FX3U_WELL_D11    "Осталось работать линия №3 [%d сек]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D11:number" }
+
+
+//Number  FX3U_WELL_D100 "FX3U_D100 Температура текущая [%.1f]" <temperature> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d100:D100:number" }
+Number  FX3U_WELL_D102 "FX3U_D102 Температура текущая [%.1f]" <temperature> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d100:D102:number" }
+
+Number  FX3U_WELL_D512 "FX3U_D512 Уставка веса импульса расходомер №1 [%d]" <temperature> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d512:D512:number" }
+Number  FX3U_WELL_D513 "FX3U_D513 Уставка времени работы лини №1 [%d]" <temperature> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d512:D513:number" }
+Number  FX3U_WELL_D514 "FX3U_D514 Уставка времени работы лини №2 [%d]" <temperature> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d512:D514:number" }
+Number  FX3U_WELL_D515 "FX3U_D515 Уставка времени работы лини №3 [%d]" <clock> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d512:D515:number" }
+
+Number  FX3U_WELL_D520 "FX3U_D520 Общий расход воды [%d литров]" <flow> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d512:D520:number" }

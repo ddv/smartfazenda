@@ -1,0 +1,9 @@
+sitemap demo label="Demo House"
+{
+	Frame {
+		Group item=FX3U_WELL  icon="garden"
+		Setpoint  item=FX3U_WELL_D513 label="Уставка время работы линия №1"  minValue=1 maxValue=60 icon=time step=2
+		Setpoint  item=FX3U_WELL_D514 label="Уставка время работы линия №2"  minValue=1 maxValue=60 icon=time step=2
+		Setpoint  item=FX3U_WELL_D515 label="Уставка время работы линия №3" minValue=1 maxValue=60 icon=time step=2
+	}
+}

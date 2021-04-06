@@ -1,0 +1,46 @@
+Bridge modbus:serial:fx3u_well [ port="COM5", baud=9600, id=1, stopBits="1.0", parity="none",dataBits=8, echo=false, encoding="rtu", flowControlIn="none", flowControlOut="none", receiveTimeoutMillis=1500 ] {
+    Bridge poller coils [ start=0, length=20, refresh=500, type="coil" ] {
+	Thing data M0 [ readStart="0", readValueType="bit" ]
+	Thing data M1 [ readStart="1", readValueType="bit", writeStart="1", writeValueType="bit", writeType="coil"]
+	Thing data M2 [ readStart="2", readValueType="bit", writeStart="2", writeValueType="bit", writeType="coil"]
+	Thing data M3 [ readStart="3", readValueType="bit", writeStart="3", writeValueType="bit", writeType="coil"]
+	Thing data M9 [ readStart="9", readValueType="bit", writeStart="9", writeValueType="bit", writeType="coil" ]
+	Thing data M10 [ readStart="10", readValueType="bit" ]
+    }
+    Bridge poller holding_d0 [ start=0, length=20, refresh=1000, type="holding" ] {
+	Thing data D0 [ readStart="0", readValueType="int16" ]
+	Thing data D1 [ readStart="1", readValueType="int16" ]
+	Thing data D3 [ readStart="3", readValueType="int16" ]
+
+	Thing data D4 [ readStart="4", readValueType="int16" ]
+	Thing data D5 [ readStart="5", readValueType="int16" ]
+	Thing data D7 [ readStart="7", readValueType="int16" ]
+
+	Thing data D8 [ readStart="8", readValueType="int16" ]
+	Thing data D9 [ readStart="9", readValueType="int16" ]
+	Thing data D11 [ readStart="11", readValueType="int16" ]
+
+
+	//Thing data D6 [ readStart="7", readValueType="float32" ]
+        //Thing data D8 [ readStart="9", readValueType="float32" ]
+	//Thing data D10 [ readStart="11", readValueType="float32" ]
+	//Thing data D12 [ readStart="13", readValueType="float32",writeStart="13", writeValueType="float32", writeType="holding" ]
+	//Thing data D12_D10 [ readStart="13", readValueType="float32",writeStart="11", writeValueType="float32", writeType="holding" ]
+    }
+    // 32х битные регистры
+    Bridge poller holding_d100 [ start=100, length=20, refresh=1000, type="holding" ] {
+	Thing data D100 [ readStart="101", readValueType="float32" ]
+	Thing data D102 [ readStart="103", readValueType="float32" ]
+    }
+    // буфферные регистры (сохраняются после перезагрузки PLC
+    Bridge poller holding_d512 [ start=511, length=40, refresh=1000, type="holding" ] {
+	Thing data D512 [ readStart="512", readValueType="int16", writeStart="512", writeValueType="int16", writeType="holding" ]
+	Thing data D513 [ readStart="513", readValueType="int16", writeStart="513", writeValueType="int16", writeType="holding" ]
+	Thing data D514 [ readStart="514", readValueType="int16", writeStart="514", writeValueType="int16", writeType="holding" ]
+	Thing data D515 [ readStart="515", readValueType="int16", writeStart="515", writeValueType="int16", writeType="holding" ]
+	Thing data D516 [ readStart="516", readValueType="int16"]
+	Thing data D517 [ readStart="517", readValueType="int16"]
+	Thing data D518 [ readStart="518", readValueType="int16"]
+	Thing data D520 [ readStart="520", readValueType="int16"]
+    }
+}
