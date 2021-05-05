@@ -4,7 +4,9 @@ Bridge modbus:serial:fx3u_well [ port="COM5", baud=9600, id=1, stopBits="1.0", p
 	Thing data M1 [ readStart="1", readValueType="bit", writeStart="1", writeValueType="bit", writeType="coil"]
 	Thing data M2 [ readStart="2", readValueType="bit", writeStart="2", writeValueType="bit", writeType="coil"]
 	Thing data M3 [ readStart="3", readValueType="bit", writeStart="3", writeValueType="bit", writeType="coil"]
-	Thing data M9 [ readStart="9", readValueType="bit", writeStart="9", writeValueType="bit", writeType="coil" ]
+	Thing data M7 [ readStart="7", readValueType="bit" ]
+	Thing data M8 [ readStart="8", readValueType="bit", writeStart="8", writeValueType="bit", writeType="coil"]
+	Thing data M9 [ readStart="9", readValueType="bit"]
 	Thing data M10 [ readStart="10", readValueType="bit" ]
     }
     Bridge poller holding_d0 [ start=0, length=20, refresh=1000, type="holding" ] {

@@ -3,9 +3,14 @@ Group FX3U_WELL (All)
 
 Contact FX3U_WELL_M10    "Связь (M10) [%d]" <qualityofservice> (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M10:contact" }
 Contact FX3U_WELL_M0    "Авария (M0) [%d]" <error>  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M0:contact" }
+
+Contact FX3U_WELL_M7    "Авария, вода в колодце (M7) [%d]" <qualityofservice> (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M7:contact" }
+Contact FX3U_WELL_M9    "Несанкционированный доступ (M9) [%d]" <qualityofservice> (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M9:contact" }
+
 Switch  FX3U_WELL_M1    "Линия полива №1 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M1:switch" }
 Switch  FX3U_WELL_M2    "Линия полива №2 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M2:switch" }
 Switch  FX3U_WELL_M3    "Линия полива №3 [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M3:switch" }
+Switch  FX3U_WELL_M8    "Отключить сирену [%d]"  (FX3U_WELL)  { channel="modbus:data:fx3u_well:coils:M8:switch" }
 
 Number  FX3U_WELL_D0    "Осталось работать линия №1 [%d полное секунды]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D0:number" }
 Number  FX3U_WELL_D1    "Осталось работать линия №1 [%d мин]" <time> (FX3U_WELL) { channel="modbus:data:fx3u_well:holding_d0:D1:number" }
