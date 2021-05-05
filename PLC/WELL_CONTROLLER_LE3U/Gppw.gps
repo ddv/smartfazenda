@@ -128,10 +128,10 @@
 [Gppw]
 	MainFrameWnd:
 		Maximize	TYPE_BOOL	TRUE
-		WindowLeft	TYPE_DWORD10	154
-		WindowTop	TYPE_DWORD10	203
-		WindowRight	TYPE_DWORD10	1594
-		WindowBottom	TYPE_DWORD10	889
+		WindowLeft	TYPE_DWORD10	110
+		WindowTop	TYPE_DWORD10	145
+		WindowRight	TYPE_DWORD10	1550
+		WindowBottom	TYPE_DWORD10	831
 		StatusBar	TYPE_BOOL	TRUE
 	BrowzerWnd:
 		BrowzerFloat	TYPE_BOOL	FALSE
@@ -354,11 +354,11 @@
 		SortType	TYPE_DWORD10	0
 	SaveTime:
 		Year	TYPE_DWORD10	2021
-		Month	TYPE_DWORD10	4
-		Day	TYPE_DWORD10	6
-		Hour	TYPE_DWORD10	19
-		Minute	TYPE_DWORD10	35
-		Second	TYPE_DWORD10	17
+		Month	TYPE_DWORD10	5
+		Day	TYPE_DWORD10	5
+		Hour	TYPE_DWORD10	23
+		Minute	TYPE_DWORD10	34
+		Second	TYPE_DWORD10	59
 [Prg]
 	PrgOptDlg:
 		EditBlock	TYPE_WORD10	0
@@ -510,7 +510,7 @@
 		SetCondition	TYPE_BOOL	FALSE
 		ProgramName	TYPE_STRING	""
 		LocalSetNo	TYPE_DWORD10	0
-		TCSetRefName	TYPE_STRING	"MAIN"
+		TCSetRefName	TYPE_STRING	""
 		BitPattern	TYPE_BOOL	TRUE
 		WSTOption	TYPE_BOOL	FALSE
 		WSTProgram	TYPE_STRING	""
@@ -688,16 +688,16 @@
 		DeviceTypeSW815	TYPE_WORD10	1
 [Cmnt]
 	SaveDevNameList:
-		SaveDevName000	TYPE_STRING	"D0"
-		SaveDevName001	TYPE_STRING	"D510"
-		SaveDevName002	TYPE_STRING	"D513"
-		SaveDevName003	TYPE_STRING	"M1"
-		SaveDevName004	TYPE_STRING	"Y000"
-		SaveDevName005	TYPE_STRING	"X000"
-		SaveDevName006	TYPE_STRING	"D512"
-		SaveDevName007	TYPE_STRING	"D1"
-		SaveDevName008	TYPE_STRING	"D100"
-		SaveDevName009	TYPE_STRING	"T0"
+		SaveDevName000	TYPE_STRING	"M0"
+		SaveDevName001	TYPE_STRING	"D0"
+		SaveDevName002	TYPE_STRING	"D510"
+		SaveDevName003	TYPE_STRING	"D513"
+		SaveDevName004	TYPE_STRING	"M1"
+		SaveDevName005	TYPE_STRING	"Y000"
+		SaveDevName006	TYPE_STRING	"X000"
+		SaveDevName007	TYPE_STRING	"D512"
+		SaveDevName008	TYPE_STRING	"D1"
+		SaveDevName009	TYPE_STRING	"D100"
 		SaveDevNameNo	TYPE_WORD10	10
 	SaveStrList:
 		SaveStr000	TYPE_STRING	"D513"
@@ -718,18 +718,63 @@
 		DevmDataNo	TYPE_WORD10	1
 [Window]
 	Window000:
+		DataName	TYPE_STRING	"MAIN"
+		WindowType	TYPE_DWORD10	257
+		WindowLeft	TYPE_DWORD10	14
+		WindowTop	TYPE_DWORD10	-24
+		WindowRight	TYPE_DWORD10	850
+		WindowBottom	TYPE_DWORD10	809
+		Maximize	TYPE_BOOL	FALSE
+		Minimize	TYPE_BOOL	FALSE
+		InsFlag	TYPE_BOOL	TRUE
+		PrgMode	TYPE_WORD10	1
+		MonFlag	TYPE_BOOL	FALSE
+		FrameStat	TYPE_WORD10	1
+		StepNo	TYPE_DWORD10	-1
+		BlockNo	TYPE_WORD10	65535
+		StepPosition	TYPE_DWORD10	70
+		ViewX	TYPE_DWORD10	0
+		ViewY	TYPE_DWORD10	0
+		WindowOrgX	TYPE_DWORD10	0
+		WindowOrgY	TYPE_DWORD10	0
+		CursorPositionX	TYPE_DWORD10	0
+		CursorPositionY	TYPE_DWORD10	0
+		MonitorDispType	TYPE_DWORD10	0
+		DispLabelFlag	TYPE_BOOL	TRUE
+		DispLabelStyle	TYPE_BOOL	TRUE
+		DispCommentFlag	TYPE_BOOL	TRUE
+		DispCommentOptFlag	TYPE_BOOL	FALSE
+		DispNoteFlag	TYPE_BOOL	TRUE
+		DispStatementFlag	TYPE_BOOL	TRUE
+		DispPercent	TYPE_DWORD10	75
+		DispAutoSizeFlag	TYPE_BOOL	TRUE
+		DispMacroFlag	TYPE_BOOL	FALSE
+		DispSizeSpecify	TYPE_BOOL	FALSE
+		DispDevCommentLine	TYPE_DWORD10	4
+		DispLdrMonDevData	TYPE_BOOL	TRUE
+		DispLdrMonDevDataAuto	TYPE_BOOL	FALSE
+	Window001:
+		DataName	TYPE_STRING	"COMMENT"
+		WindowType	TYPE_DWORD10	769
+		WindowLeft	TYPE_DWORD10	868
+		WindowTop	TYPE_DWORD10	179
+		WindowRight	TYPE_DWORD10	1703
+		WindowBottom	TYPE_DWORD10	779
+		Maximize	TYPE_BOOL	FALSE
+		Minimize	TYPE_BOOL	FALSE
+	Window002:
 		DataName	TYPE_STRING	"Монитор входных данных-1"
 		WindowType	TYPE_DWORD10	515
-		WindowLeft	TYPE_DWORD10	858
-		WindowTop	TYPE_DWORD10	99
-		WindowRight	TYPE_DWORD10	1665
-		WindowBottom	TYPE_DWORD10	696
+		WindowLeft	TYPE_DWORD10	860
+		WindowTop	TYPE_DWORD10	1
+		WindowRight	TYPE_DWORD10	1667
+		WindowBottom	TYPE_DWORD10	355
 		Maximize	TYPE_BOOL	FALSE
 		Minimize	TYPE_BOOL	FALSE
 		MultiCheck	TYPE_BOOL	FALSE
 		Monitoring	TYPE_BOOL	FALSE
 		PrgName	TYPE_STRING	"MAIN"
-		DevCount	TYPE_WORD16	0x11
+		DevCount	TYPE_WORD16	0x13
 		DevName0	TYPE_STRING	"D512"
 		Label0	TYPE_BOOL	FALSE
 		Devive0	TYPE_STRING	"D512"
@@ -849,51 +894,20 @@
 		DataType16	TYPE_WORD10	0
 		DeviceType16	TYPE_WORD10	2
 		DeviceTypeSW816	TYPE_WORD10	2
-	Window001:
-		DataName	TYPE_STRING	"MAIN"
-		WindowType	TYPE_DWORD10	257
-		WindowLeft	TYPE_DWORD10	14
-		WindowTop	TYPE_DWORD10	-24
-		WindowRight	TYPE_DWORD10	850
-		WindowBottom	TYPE_DWORD10	809
-		Maximize	TYPE_BOOL	FALSE
-		Minimize	TYPE_BOOL	FALSE
-		InsFlag	TYPE_BOOL	FALSE
-		PrgMode	TYPE_WORD10	1
-		MonFlag	TYPE_BOOL	FALSE
-		FrameStat	TYPE_WORD10	1
-		StepNo	TYPE_DWORD10	-1
-		BlockNo	TYPE_WORD10	65535
-		StepPosition	TYPE_DWORD10	134
-		ViewX	TYPE_DWORD10	0
-		ViewY	TYPE_DWORD10	0
-		WindowOrgX	TYPE_DWORD10	0
-		WindowOrgY	TYPE_DWORD10	0
-		CursorPositionX	TYPE_DWORD10	9
-		CursorPositionY	TYPE_DWORD10	2
-		MonitorDispType	TYPE_DWORD10	0
-		DispLabelFlag	TYPE_BOOL	TRUE
-		DispLabelStyle	TYPE_BOOL	TRUE
-		DispCommentFlag	TYPE_BOOL	TRUE
-		DispCommentOptFlag	TYPE_BOOL	FALSE
-		DispNoteFlag	TYPE_BOOL	TRUE
-		DispStatementFlag	TYPE_BOOL	TRUE
-		DispPercent	TYPE_DWORD10	75
-		DispAutoSizeFlag	TYPE_BOOL	TRUE
-		DispMacroFlag	TYPE_BOOL	FALSE
-		DispSizeSpecify	TYPE_BOOL	FALSE
-		DispDevCommentLine	TYPE_DWORD10	4
-		DispLdrMonDevData	TYPE_BOOL	TRUE
-		DispLdrMonDevDataAuto	TYPE_BOOL	FALSE
-	Window002:
-		DataName	TYPE_STRING	"COMMENT"
-		WindowType	TYPE_DWORD10	769
-		WindowLeft	TYPE_DWORD10	855
-		WindowTop	TYPE_DWORD10	175
-		WindowRight	TYPE_DWORD10	1690
-		WindowBottom	TYPE_DWORD10	775
-		Maximize	TYPE_BOOL	FALSE
-		Minimize	TYPE_BOOL	FALSE
+		DevName17	TYPE_STRING	"M0"
+		Label17	TYPE_BOOL	FALSE
+		Devive17	TYPE_STRING	"M0"
+		BaseType17	TYPE_WORD10	0
+		DataType17	TYPE_WORD10	0
+		DeviceType17	TYPE_WORD10	1
+		DeviceTypeSW817	TYPE_WORD10	1
+		DevName18	TYPE_STRING	"M9"
+		Label18	TYPE_BOOL	FALSE
+		Devive18	TYPE_STRING	"M9"
+		BaseType18	TYPE_WORD10	0
+		DataType18	TYPE_WORD10	0
+		DeviceType18	TYPE_WORD10	1
+		DeviceTypeSW818	TYPE_WORD10	1
 	Window003:
 		DataName	TYPE_STRING	"Перекрестные ссылки"
 		WindowType	TYPE_DWORD10	304
