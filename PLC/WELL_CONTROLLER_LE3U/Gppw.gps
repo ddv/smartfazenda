@@ -357,8 +357,8 @@
 		Month	TYPE_DWORD10	4
 		Day	TYPE_DWORD10	16
 		Hour	TYPE_DWORD10	19
-		Minute	TYPE_DWORD10	43
-		Second	TYPE_DWORD10	54
+		Minute	TYPE_DWORD10	44
+		Second	TYPE_DWORD10	59
 [Prg]
 	PrgOptDlg:
 		EditBlock	TYPE_WORD10	0
@@ -737,8 +737,8 @@
 		ViewY	TYPE_DWORD10	0
 		WindowOrgX	TYPE_DWORD10	0
 		WindowOrgY	TYPE_DWORD10	0
-		CursorPositionX	TYPE_DWORD10	6
-		CursorPositionY	TYPE_DWORD10	3
+		CursorPositionX	TYPE_DWORD10	8
+		CursorPositionY	TYPE_DWORD10	6
 		MonitorDispType	TYPE_DWORD10	0
 		DispLabelFlag	TYPE_BOOL	TRUE
 		DispLabelStyle	TYPE_BOOL	TRUE
