@@ -128,10 +128,10 @@
 [Gppw]
 	MainFrameWnd:
 		Maximize	TYPE_BOOL	TRUE
-		WindowLeft	TYPE_DWORD10	66
-		WindowTop	TYPE_DWORD10	87
-		WindowRight	TYPE_DWORD10	1506
-		WindowBottom	TYPE_DWORD10	754
+		WindowLeft	TYPE_DWORD10	88
+		WindowTop	TYPE_DWORD10	116
+		WindowRight	TYPE_DWORD10	1528
+		WindowBottom	TYPE_DWORD10	783
 		StatusBar	TYPE_BOOL	TRUE
 	BrowzerWnd:
 		BrowzerFloat	TYPE_BOOL	FALSE
@@ -355,10 +355,10 @@
 	SaveTime:
 		Year	TYPE_DWORD10	2025
 		Month	TYPE_DWORD10	5
-		Day	TYPE_DWORD10	1
-		Hour	TYPE_DWORD10	23
-		Minute	TYPE_DWORD10	25
-		Second	TYPE_DWORD10	28
+		Day	TYPE_DWORD10	27
+		Hour	TYPE_DWORD10	10
+		Minute	TYPE_DWORD10	14
+		Second	TYPE_DWORD10	21
 [Prg]
 	PrgOptDlg:
 		EditBlock	TYPE_WORD10	0
@@ -446,10 +446,10 @@
 		MonStatus	TYPE_BOOL	TRUE
 		DispStatus	TYPE_BOOL	FALSE
 		FloatState	TYPE_BOOL	TRUE
-		WindowLeft	TYPE_DWORD10	1676
-		WindowTop	TYPE_DWORD10	106
-		WindowRight	TYPE_DWORD10	1926
-		WindowBottom	TYPE_DWORD10	134
+		WindowLeft	TYPE_DWORD10	1678
+		WindowTop	TYPE_DWORD10	126
+		WindowRight	TYPE_DWORD10	1928
+		WindowBottom	TYPE_DWORD10	154
 	MonitorStartCond:
 		ExecCondition	TYPE_WORD10	0
 		ProgramName	TYPE_STRING	""
@@ -719,51 +719,15 @@
 		DevmDataNo	TYPE_WORD10	1
 [Window]
 	Window000:
-		DataName	TYPE_STRING	"MAIN"
-		WindowType	TYPE_DWORD10	257
-		WindowLeft	TYPE_DWORD10	14
-		WindowTop	TYPE_DWORD10	-24
-		WindowRight	TYPE_DWORD10	850
-		WindowBottom	TYPE_DWORD10	809
-		Maximize	TYPE_BOOL	FALSE
-		Minimize	TYPE_BOOL	FALSE
-		InsFlag	TYPE_BOOL	FALSE
-		PrgMode	TYPE_WORD10	2
-		MonFlag	TYPE_BOOL	FALSE
-		FrameStat	TYPE_WORD10	1
-		StepNo	TYPE_DWORD10	-1
-		BlockNo	TYPE_WORD10	65535
-		StepPosition	TYPE_DWORD10	65
-		ViewX	TYPE_DWORD10	0
-		ViewY	TYPE_DWORD10	0
-		WindowOrgX	TYPE_DWORD10	0
-		WindowOrgY	TYPE_DWORD10	0
-		CursorPositionX	TYPE_DWORD10	9
-		CursorPositionY	TYPE_DWORD10	4
-		MonitorDispType	TYPE_DWORD10	0
-		DispLabelFlag	TYPE_BOOL	TRUE
-		DispLabelStyle	TYPE_BOOL	TRUE
-		DispCommentFlag	TYPE_BOOL	TRUE
-		DispCommentOptFlag	TYPE_BOOL	FALSE
-		DispNoteFlag	TYPE_BOOL	TRUE
-		DispStatementFlag	TYPE_BOOL	TRUE
-		DispPercent	TYPE_DWORD10	75
-		DispAutoSizeFlag	TYPE_BOOL	TRUE
-		DispMacroFlag	TYPE_BOOL	FALSE
-		DispSizeSpecify	TYPE_BOOL	FALSE
-		DispDevCommentLine	TYPE_DWORD10	4
-		DispLdrMonDevData	TYPE_BOOL	TRUE
-		DispLdrMonDevDataAuto	TYPE_BOOL	FALSE
-	Window001:
 		DataName	TYPE_STRING	"COMMENT"
 		WindowType	TYPE_DWORD10	769
-		WindowLeft	TYPE_DWORD10	110
-		WindowTop	TYPE_DWORD10	145
-		WindowRight	TYPE_DWORD10	1645
-		WindowBottom	TYPE_DWORD10	610
+		WindowLeft	TYPE_DWORD10	951
+		WindowTop	TYPE_DWORD10	135
+		WindowRight	TYPE_DWORD10	1610
+		WindowBottom	TYPE_DWORD10	600
 		Maximize	TYPE_BOOL	FALSE
 		Minimize	TYPE_BOOL	FALSE
-	Window002:
+	Window001:
 		DataName	TYPE_STRING	"Монитор входных данных-1"
 		WindowType	TYPE_DWORD10	515
 		WindowLeft	TYPE_DWORD10	845
@@ -839,6 +803,42 @@
 		DataType8	TYPE_WORD10	0
 		DeviceType8	TYPE_WORD10	1
 		DeviceTypeSW88	TYPE_WORD10	1
+	Window002:
+		DataName	TYPE_STRING	"MAIN"
+		WindowType	TYPE_DWORD10	257
+		WindowLeft	TYPE_DWORD10	14
+		WindowTop	TYPE_DWORD10	-24
+		WindowRight	TYPE_DWORD10	850
+		WindowBottom	TYPE_DWORD10	809
+		Maximize	TYPE_BOOL	FALSE
+		Minimize	TYPE_BOOL	FALSE
+		InsFlag	TYPE_BOOL	FALSE
+		PrgMode	TYPE_WORD10	1
+		MonFlag	TYPE_BOOL	FALSE
+		FrameStat	TYPE_WORD10	1
+		StepNo	TYPE_DWORD10	-1
+		BlockNo	TYPE_WORD10	65535
+		StepPosition	TYPE_DWORD10	244
+		ViewX	TYPE_DWORD10	0
+		ViewY	TYPE_DWORD10	0
+		WindowOrgX	TYPE_DWORD10	0
+		WindowOrgY	TYPE_DWORD10	0
+		CursorPositionX	TYPE_DWORD10	0
+		CursorPositionY	TYPE_DWORD10	0
+		MonitorDispType	TYPE_DWORD10	0
+		DispLabelFlag	TYPE_BOOL	TRUE
+		DispLabelStyle	TYPE_BOOL	TRUE
+		DispCommentFlag	TYPE_BOOL	TRUE
+		DispCommentOptFlag	TYPE_BOOL	FALSE
+		DispNoteFlag	TYPE_BOOL	TRUE
+		DispStatementFlag	TYPE_BOOL	TRUE
+		DispPercent	TYPE_DWORD10	75
+		DispAutoSizeFlag	TYPE_BOOL	TRUE
+		DispMacroFlag	TYPE_BOOL	FALSE
+		DispSizeSpecify	TYPE_BOOL	FALSE
+		DispDevCommentLine	TYPE_DWORD10	4
+		DispLdrMonDevData	TYPE_BOOL	TRUE
+		DispLdrMonDevDataAuto	TYPE_BOOL	FALSE
 	Window003:
 		DataName	TYPE_STRING	"Перекрестные ссылки"
 		WindowType	TYPE_DWORD10	304
